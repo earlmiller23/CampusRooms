@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<Microsoft.AspNetCore.Identity.IdentityUser>
+
+<h1>Users</h1>
+
+<table class="table">
+    <tr>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+    @foreach (IdentityUser user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>
+                @if (ViewBag.StaffIds.Contains(user.Id))
+                {
+                    <span class="badge bg-secondary">Staff</span>
+                }
+                else
+                {
+                    <form method="post" asp-controller="Users" asp-action="MakeStaff" asp-route-id="@user.Id">
+                        <button type="submit" class="btn btn-sm btn-primary">Make staff</button>
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+</table>

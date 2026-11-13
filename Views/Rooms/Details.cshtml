@@ -1,0 +1,34 @@
+@model Room
+
+<h1>@Model.Code: @Model.Name</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Building</dt>
+    <dd class="col-sm-9">
+        @if (Model.Building != null)
+        {
+            <a asp-controller="Building" asp-action="Details" asp-route-id="@Model.BuildingId">
+                @Model.Building.Name
+            </a>
+        }
+        else
+        {
+            <span>None</span>
+        }
+    </dd>
+    <dt class="col-sm-3">Seats</dt>
+    <dd class="col-sm-9">@Model.Seats</dd>
+    <dt class="col-sm-3">Projector</dt>
+    <dd class="col-sm-9">
+        @if (Model.HasProjector)
+        {
+            <span>Yes</span>
+        }
+        else
+        {
+            <span>No</span>
+        }
+    </dd>
+</dl>
+
+<a asp-controller="Rooms" asp-action="Index">All rooms</a>
